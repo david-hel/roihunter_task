@@ -1,0 +1,51 @@
+grafana:
+  enabled: true
+  service:
+    type: NodePort
+  sidecar:
+    datasources: 
+      enabled: true
+  datasources:
+    datasources.yaml:
+      apiVersion: 1
+      datasources:
+      - name: Prometheus
+        type: prometheus
+        url: http://prometheus-kube-prometheus-prometheus.monitoring:9090/
+        access: proxy
+        isDefault: true
+      - name: Loki
+        type: loki
+        access: proxy
+        uid: loki
+        url: http://loki.monitoring:3100/
+
+alertmanager:
+  enabled: true
+  service:
+    type: NodePort
+  alertmanagerSpec:
+    storage:
+    volumeClaimTemplate:
+      spec:
+        storageClassName: gp2
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 10Gi       
+
+prometheus: 
+  enabled: true
+  prometheusSpec:
+    storageSpec:
+     volumeClaimTemplate:
+       spec:
+         storageClassName: gp2
+         accessModes: ["ReadWriteOnce"]
+         resources:
+           requests:
+             storage: 200Gi
+  service:
+    enabled: true
+    type: NodePort
+

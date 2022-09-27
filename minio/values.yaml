@@ -1,0 +1,12 @@
+# Number of MinIO containers running
+replicas: 5
+
+persistence:
+  enabled: true
+  storageClass: ""
+  VolumeName: ""
+  accessMode: ReadWriteOnce
+  size: 10Gi
+
+service:
+  type: NodePort
