@@ -7,7 +7,7 @@ resource "null_resource" "alertmanager_secret_delete" {
     provisioner "local-exec" {
       command = <<-EOT
                 kubectl delete secret alertmanager-prometheus-kube-prometheus-alertmanager -n monitoring
-                kubectl apply -f prometheus_rules.yaml
+                kubectl apply -f rules/prometheus_rules.yaml
               EOT
 
     }

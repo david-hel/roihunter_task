@@ -9,6 +9,6 @@ resource "helm_release" "prometheus" {
   atomic            = var.helm_atomic
 
   values = [
-    "${file("values_prometheus.yaml")}"
+    "${file("values/values_prometheus.yaml")}"
   ]
 }

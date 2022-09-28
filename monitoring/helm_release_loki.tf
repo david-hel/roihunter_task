@@ -9,6 +9,6 @@ resource "helm_release" "loki" {
   atomic            = var.helm_atomic
 
   values = [
-    "${file("values_loki.yaml")}"
+    "${file("values/values_loki.yaml")}"
   ]
 }
